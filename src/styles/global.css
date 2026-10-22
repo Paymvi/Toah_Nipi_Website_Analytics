@@ -1,0 +1,278 @@
+/* Design tokens and base styles shared by the whole app. */
+
+:root {
+  color-scheme: light;
+
+  /* Brand */
+  --color-forest: #1f4d3a;
+  --color-forest-hover: #173d2e;
+  --color-sage: #8fa898;
+  --color-sage-soft: #e6ece3;
+  --color-gold: #b8873a;
+  --color-gold-soft: #f4ead6;
+  --color-cream: #f7f3ea;
+
+  /* Surfaces */
+  --color-bg: #f7f3ea;
+  --color-surface: #fffdf8;
+  --color-surface-muted: #f2ede2;
+  --color-border: #e6dfcf;
+  --color-border-strong: #d3c8b2;
+  --color-grid: #ebe4d5;
+
+  /* Text */
+  --color-text: #1d2a23;
+  --color-text-secondary: #46524a;
+  --color-text-muted: #5c665f;
+
+  /* Data and status */
+  --color-series-pageviews: #1f7048;
+  --color-series-visitors: #b8873a;
+  --color-bar: #a9bfae;
+  --color-positive: #1f7048;
+  --color-negative: #a4532e;
+  --color-error: #9b3b26;
+  --color-error-soft: #f8e9e3;
+  --color-focus: #1f4d3a;
+
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-card: 0 1px 2px rgb(45 40 25 / 0.05), 0 4px 16px rgb(45 40 25 / 0.05);
+  --shadow-pop: 0 8px 28px rgb(45 40 25 / 0.14);
+
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--color-forest);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Cards */
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* Buttons */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.button--primary {
+  background: var(--color-forest);
+  color: #fff;
+}
+
+.button--primary:hover:not(:disabled) {
+  background: var(--color-forest-hover);
+}
+
+.button--secondary {
+  background: var(--color-surface);
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: var(--color-surface-muted);
+}
+
+.button--quiet {
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  padding-inline: 0.625rem;
+}
+
+.button--quiet:hover {
+  color: var(--color-text);
+  background: var(--color-surface-muted);
+}
+
+.button--block {
+  width: 100%;
+}
+
+/* Brand */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-mark {
+  flex-shrink: 0;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-forest);
+  letter-spacing: 0.01em;
+}
+
+.brand-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.brand--lg .brand-name {
+  font-size: 1.625rem;
+}
+
+.brand--lg .brand-title {
+  font-size: 1rem;
+}
+
+/* Full-page states (session check, setup errors) */
+
+.centered-page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.centered-page .error-state {
+  max-width: 480px;
+}
+
+/* Error and empty states */
+
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.error-state-icon {
+  color: var(--color-error);
+}
+
+.error-state-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.error-state-message {
+  max-width: 40ch;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  font-size: 0.9375rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.empty-state svg {
+  color: var(--color-sage);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
